@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 포춘 쿠키</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>당신의 오늘 운세를 확인하세요</h1>
+            <p>쿠키를 클릭해서 행운을 열어보세요!</p>
+        </header>
+
+        <main>
+            <div class="cookie-container" id="cookie-container">
+                <svg id="fortune-cookie" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left half of the cookie -->
+                    <g id="cookie-left" class="cookie-part">
+                        <path d="M 100 100 Q 40 140 20 100 Q 10 50 60 30 Q 90 20 100 50 Z" fill="#F4C430"
+                            stroke="#D2691E" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M 40 100 Q 50 110 70 105" fill="none" stroke="#D2691E" stroke-width="2"
+                            stroke-linecap="round" opacity="0.6" />
+                    </g>
+
+                    <!-- Right half of the cookie -->
+                    <g id="cookie-right" class="cookie-part">
+                        <path d="M 100 100 Q 160 140 180 100 Q 190 50 140 30 Q 110 20 100 50 Z" fill="#F4C430"
+                            stroke="#D2691E" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M 160 100 Q 150 110 130 105" fill="none" stroke="#D2691E" stroke-width="2"
+                            stroke-linecap="round" opacity="0.6" />
+                    </g>
+
+                    <!-- Center crack/fold line (hidden initially or part of the design) -->
+                    <!-- We use the meeting point of the two paths as the crack -->
+                </svg>
+
+                <div id="message-container" class="hidden">
+                    <div class="fortune-paper">
+                        <p id="fortune-text">운세를 불러오는 중...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <button id="reset-btn" class="hidden">다른 운세 보기</button>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
