@@ -116,14 +116,16 @@ svg#fortune-cookie {
     overflow: visible;
 }
 
-/* SVG Fill Handling */
+/* SVG Fill Handling for GitHub Pages Compatibility */
 .cookie-fill {
-    fill: url(#cookieGradDay);
+    fill: #F4C430;
+    /* Solid Gold Day Color */
     transition: fill 1s;
 }
 
 body.night-mode .cookie-fill {
-    fill: url(#cookieGradNight);
+    fill: #7E57C2;
+    /* Solid Purple Night Color */
 }
 
 .cookie-part {
