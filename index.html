@@ -1,1 +1,110 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI 포춘 쿠키</title><link rel="stylesheet" href="style.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"></head><body class="night-mode"><div class="container"><header><h1>당신의 오늘 운세를 확인하세요</h1><p>쿠키를 클릭해서 행운을 열어보세요!</p></header><main><div class="cookie-container" id="cookie-container" role="button" tabindex="0" aria-label="포춘 쿠키 열기"><svg id="fortune-cookie" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cookieGradDay" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFE066"></stop><stop offset="50%" stop-color="#F4C430"></stop><stop offset="100%" stop-color="#EAA800"></stop></linearGradient><linearGradient id="cookieGradNight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#B39DDB"></stop><stop offset="50%" stop-color="#7E57C2"></stop><stop offset="100%" stop-color="#4527A0"></stop></linearGradient></defs><g id="cookie-left" class="cookie-part"><path d="M 100 100 Q 40 140 20 100 Q 10 50 60 30 Q 90 20 100 50 Z" class="cookie-fill" stroke="var(--cookie-stroke-dynamic)" stroke-width="3"></path></g><g id="cookie-right" class="cookie-part"><path d="M 100 100 Q 160 140 180 100 Q 190 50 140 30 Q 110 20 100 50 Z" class="cookie-fill" stroke="var(--cookie-stroke-dynamic)" stroke-width="3"></path></g></svg><div id="message-container" class="hidden"><div class="fortune-paper"><p id="fortune-text">운세를 불러오는 중...</p><div class="stat-container hidden" id="stat-container"><div class="stat-row"><span class="stat-label">💰 재물운</span><div class="stat-bar-bg"><div class="stat-bar-fill wealth" style="width: 0%"></div></div></div></div></div></div></div></main><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 포춘 쿠키</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>당신의 오늘 운세를 확인하세요</h1>
+            <p>쿠키를 클릭해서 행운을 열어보세요!</p>
+        </header>
+
+        <main>
+            <div class="cookie-container" id="cookie-container" role="button" tabindex="0" aria-label="포춘 쿠키 열기">
+                <svg id="fortune-cookie" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Day Time Gradient -->
+                        <linearGradient id="cookieGradDay" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFE066" />
+                            <stop offset="50%" stop-color="#F4C430" />
+                            <stop offset="100%" stop-color="#EAA800" />
+                        </linearGradient>
+
+                        <!-- Night Time Gradient (Dalbit Cookie) -->
+                        <linearGradient id="cookieGradNight" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#B39DDB" /> <!-- Light Purple -->
+                            <stop offset="50%" stop-color="#7E57C2" /> <!-- Deep Purple -->
+                            <stop offset="100%" stop-color="#4527A0" /> <!-- Very Dark Purple -->
+                        </linearGradient>
+
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- Left half of the cookie -->
+                    <g id="cookie-left" class="cookie-part">
+                        <path d="M 100 100 Q 40 140 20 100 Q 10 50 60 30 Q 90 20 100 50 Z" class="cookie-fill"
+                            stroke="var(--cookie-stroke-dynamic)" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M 40 100 Q 50 110 70 105" fill="none" stroke="var(--cookie-stroke-dynamic)"
+                            stroke-width="2" stroke-linecap="round" opacity="0.6" />
+                    </g>
+
+                    <!-- Right half of the cookie -->
+                    <g id="cookie-right" class="cookie-part">
+                        <path d="M 100 100 Q 160 140 180 100 Q 190 50 140 30 Q 110 20 100 50 Z" class="cookie-fill"
+                            stroke="var(--cookie-stroke-dynamic)" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M 160 100 Q 150 110 130 105" fill="none" stroke="var(--cookie-stroke-dynamic)"
+                            stroke-width="2" stroke-linecap="round" opacity="0.6" />
+                    </g>
+                </svg>
+
+                <div id="message-container" class="hidden">
+                    <div class="fortune-paper">
+                        <div class="fortune-content-wrapper">
+                            <p id="fortune-text" aria-live="polite">운세를 불러오는 중...</p>
+
+                            <!-- Stat Bars -->
+                            <div class="stat-container hidden" id="stat-container">
+                                <div class="stat-row">
+                                    <span class="stat-label">💰 재물운</span>
+                                    <div class="stat-bar-bg">
+                                        <div class="stat-bar-fill wealth" id="stat-wealth" style="width: 0%"></div>
+                                    </div>
+                                    <span class="stat-value" id="val-wealth">0%</span>
+                                    <span class="stat-crit hidden" id="crit-wealth">CRITICAL!</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">💖 애정운</span>
+                                    <div class="stat-bar-bg">
+                                        <div class="stat-bar-fill love" id="stat-love" style="width: 0%"></div>
+                                    </div>
+                                    <span class="stat-value" id="val-love">0%</span>
+                                    <span class="stat-crit hidden" id="crit-love">CRITICAL!</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">🍀 건강운</span>
+                                    <div class="stat-bar-bg">
+                                        <div class="stat-bar-fill health" id="stat-health" style="width: 0%"></div>
+                                    </div>
+                                    <span class="stat-value" id="val-health">0%</span>
+                                    <span class="stat-crit hidden" id="crit-health">CRITICAL!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <button id="reset-btn" class="hidden">다른 운세 보기</button>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
